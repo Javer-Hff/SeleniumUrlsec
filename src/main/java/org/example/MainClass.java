@@ -62,15 +62,13 @@ public class MainClass {
             }
         }
         windowHandles.remove(currentWindow);
-
         edgeDriver.switchTo().window(windowHandles.toArray()[0].toString());
+
 
         //点击按钮
         WebElement element = edgeDriver.findElement(By.id("check-btn"));
         element.click();
         Thread.sleep(5000);
-
-
 
         //切换到验证码frame
         WebElement iframe = edgeDriver.findElement(By.id("tcaptcha_iframe"));
@@ -87,7 +85,6 @@ public class MainClass {
         Actions actions = new Actions(edgeDriver);
         actions.moveToElement(dragThumb).click().moveByOffset(offset/2,0).perform();
 
-
         int current = 0;
         while (Math.abs(offset - current - (offset/2)) > 5){
             //每次移动加入随机数
@@ -100,9 +97,6 @@ public class MainClass {
         Thread.sleep(15000);
         //切换回父Frame
         edgeDriver.switchTo().parentFrame();
-
-        WebElement element1 = edgeDriver.findElement(By.xpath("//ul[@class='result-warning-list']"));
-        System.out.println(element1);
 
         List<WebElement> liList = edgeDriver.findElements(By.xpath("//ul[@class='result-warning-list']/li"));
         if (liList==null || liList.size()==0){
